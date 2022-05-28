@@ -8,9 +8,9 @@ namespace src
         static void Main() {
             Game g = new Game(600, 600, "Ponglib");
             g.setFPS(60);
-            
+
             while(g.isRunning()) {
-                g.Tick();
+                g.Tick();         
             }
 
             g.end();        

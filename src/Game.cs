@@ -5,12 +5,20 @@ namespace src
 {
     class Game
     {
-        public float delta;
+        public static float delta;
+        public static int fps;
+        public static int wLen;
+        public static int wHeight;
 
         public int fpsCap;
 
+        Player p1 = new Player(30, 0, 0);
+        Player p2 = new Player(570, 0, 1);
+
         // constructor
         public Game(int winX, int winY, string title) {
+            wLen = winX;
+            wHeight = winY;
             Raylib.InitWindow(winX, winY, title);
         }
 
@@ -24,7 +32,11 @@ namespace src
         }
 
         public float getDelta() {
-            return delta;
+            return Raylib.GetFrameTime();
+        }
+
+        public void getFPS() {
+            fps = Raylib.GetFPS();
         }
 
         public void setFPS(int fps) {
@@ -32,16 +44,32 @@ namespace src
             Raylib.SetTargetFPS(fps);
         }
 
+
         public void Tick() {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.BLACK);
-            Raylib.DrawFPS(0, 0);
-
-            Raylib.DrawText("Hello, world!", 0, 14, 20, Color.WHITE);
+            getFPS();
+            Raylib.DrawText($"FPS: {fps}", 0, 0, 20, Color.WHITE);
             
+            Raylib.DrawText($"P1 VEL: {p1.yVel}", 0, 16, 20, Color.WHITE);
+            Raylib.DrawText($"P2 VEL: {p2.yVel}", 0, 35, 20, Color.WHITE);
+
+            Raylib.DrawText($"P1 Y: {p1.y}", 0, 51, 20, Color.WHITE);
+            Raylib.DrawText($"P2 Y: {p2.y}", 0, 67, 20, Color.WHITE);
+  
+            p1.Move();
+            p2.Move();
+
+            Draw();
+
             Raylib.EndDrawing();
 
-            delta = Raylib.GetFrameTime();
+            delta = getDelta();
+        }
+
+        private void Draw() {
+            Raylib.DrawRectangle(p1.x, p1.y, 5, 10, Color.WHITE); // draw p1
+            Raylib.DrawRectangle(p2.x, p2.y, 5, 10, Color.WHITE); // draw p2
         }
     }
 }
