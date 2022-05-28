@@ -12,8 +12,8 @@ namespace src
 
         public int fpsCap;
 
-        Player p1 = new Player(30, 0, 0);
-        Player p2 = new Player(570, 0, 1);
+        Player p1 = new Player(30, 0, 25, 105, 0);
+        Player p2 = new Player(550, 0, 25, 105, 1);
 
         // constructor
         public Game(int winX, int winY, string title) {
@@ -49,13 +49,15 @@ namespace src
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.BLACK);
             getFPS();
-            Raylib.DrawText($"FPS: {fps}", 0, 0, 20, Color.WHITE);
+            Raylib.DrawText($"FUTY: {p1.futureY}", 0, 0, 20, Color.WHITE);
             
-            Raylib.DrawText($"P1 VEL: {p1.yVel}", 0, 16, 20, Color.WHITE);
-            Raylib.DrawText($"P2 VEL: {p2.yVel}", 0, 35, 20, Color.WHITE);
+            // Raylib.DrawText($"P1 VEL: {p1.yVel}", 0, 16, 20, Color.WHITE);
+            // Raylib.DrawText($"P2 VEL: {p2.yVel}", 0, 35, 20, Color.WHITE);
 
-            Raylib.DrawText($"P1 Y: {p1.y}", 0, 51, 20, Color.WHITE);
-            Raylib.DrawText($"P2 Y: {p2.y}", 0, 67, 20, Color.WHITE);
+            // Raylib.DrawText($"P1 Y: {p1.y}", 0, 51, 20, Color.WHITE);
+            // Raylib.DrawText($"P2 Y: {p2.y}", 0, 67, 20, Color.WHITE);
+
+            // Raylib.DrawText($"DELTA: {delta}", 0, 83, 20, Color.WHITE);
   
             p1.Move();
             p2.Move();
@@ -68,8 +70,8 @@ namespace src
         }
 
         private void Draw() {
-            Raylib.DrawRectangle(p1.x, p1.y, 5, 10, Color.WHITE); // draw p1
-            Raylib.DrawRectangle(p2.x, p2.y, 5, 10, Color.WHITE); // draw p2
+            Raylib.DrawRectangle(p1.x, p1.y, 25, 105, Color.WHITE); // draw p1
+            Raylib.DrawRectangle(p2.x, p2.y, 25, 105, Color.WHITE); // draw p2
         }
     }
 }
